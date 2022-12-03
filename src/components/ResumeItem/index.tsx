@@ -1,4 +1,5 @@
 import * as C from './styles'
+import { formatCurrency } from '../../helpers/formatCurrency';
 
 type Props = {
     title: string;
@@ -10,7 +11,7 @@ export const ResumeItem = ({ title, value, color }: Props) => {
   return (
     <C.Container>
         <C.Title>{title}</C.Title>
-        <C.Info color={color}>R$ {value}</C.Info>
+        <C.Info color={color}>{formatCurrency(value)}</C.Info>
     </C.Container> 
   )
 }

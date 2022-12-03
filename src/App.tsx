@@ -1,16 +1,14 @@
-import { useState, useEffect } from 'react';
-
 import * as C from './App.styles';
 import {Item} from './types/Item';
-import { Category } from './types/Category';
 import { categories } from './data/categories';
 import { items } from './data/items';
-
+import { useState, useEffect } from 'react';
 import { getCurrentMonth, filterListByMonth } from './helpers/dateFilter'
 
 //COMPONENTS
 import { TableArea } from './components/TableArea';
 import { InfoArea } from './components/InfoArea';
+import { InputArea } from './components/InputArea';
 
 
 const App = () => {
@@ -20,13 +18,11 @@ const App = () => {
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
 
+  // console.log(getCurrentMonth())
+
   useEffect(() => {
     setFilteredList( filterListByMonth(list, currentMonth) );
-  }, [list, currentMonth])
-
-  const handleMonthChange = (newMonth: string) => {
-    setCurrentMonth(newMonth);
-  }
+  }, [list, currentMonth]) 
 
   useEffect(() => {
     let incomeCount = 0;
@@ -45,6 +41,16 @@ const App = () => {
 
   }, [fiteredList]);
 
+  const handleMonthChange = (newMonth: string) => {
+    setCurrentMonth(newMonth);
+  }
+
+  const handleAddItem = (item: Item) => {
+    let newList = [...list];
+    newList.push(item);
+    setList(newList);
+  }
+
 
   return (
     <C.Container>
@@ -60,7 +66,7 @@ const App = () => {
           expense={expense}
         />
 
-        {/* Área de inserção */}
+        <InputArea onAdd={handleAddItem}/>
 
         <TableArea list={fiteredList} />
 

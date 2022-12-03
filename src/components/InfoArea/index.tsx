@@ -17,17 +17,22 @@ export function InfoArea({ currentMonth, onMonthChange, income, expense }: Props
 
     const handlePrevMonth = () => {
         let [year, month] = currentMonth.split('-');
-        let currentDate = new Date(parseInt(year), parseInt(month) -1, 1);
+        let currentDate = new Date(parseInt(year), parseInt(month) - 1, 1);
         currentDate.setMonth( currentDate.getMonth() - 1 );
-        onMonthChange(`${currentDate.getFullYear()}-${currentDate.getMonth() +1 }`);
+        onMonthChange(`${currentDate.getFullYear()}-${currentDate.getMonth() + 1}`);
+
+        console.log(currentDate)
     }
 
     const handleNextMonth = () => {
         let [year, month] = currentMonth.split('-');
-        let currentDate = new Date(parseInt(year), parseInt(month) -1, 1);
+        let currentDate = new Date(parseInt(year), parseInt(month) - 1, 1);
         currentDate.setMonth( currentDate.getMonth() + 1 );
-        onMonthChange(`${currentDate.getFullYear()}-${currentDate.getMonth() +1 }`);
+        onMonthChange(`${currentDate.getFullYear()}-${currentDate.getMonth() + 1}`);
+
+        console.log(currentDate)
     }
+
 
   return (
     <C.Container>
@@ -37,8 +42,16 @@ export function InfoArea({ currentMonth, onMonthChange, income, expense }: Props
             <C.MonthArrow onClick={handleNextMonth}>➡️</C.MonthArrow>
         </C.MonthArea>            
         <C.ResumeArea>
-        <ResumeItem title="Receitas" value={income} />
-            <ResumeItem title="Despesas" value={expense}/>
+        <ResumeItem 
+                title="Receitas"
+                value={income}
+                color={'blue'} 
+            />
+            <ResumeItem 
+                title="Despesas" 
+                value={expense}
+                color={'red'}
+            />
             <ResumeItem 
                 title="Balanço" 
                 value={income - expense}

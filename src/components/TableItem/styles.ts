@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const TableLine = styled.tr`
-
+    
 `;
 
 export const TableColumn = styled.td`
     padding: 10px 0;
+    overflow-y: auto;
 `;
 
 export const Category = styled.div<{ color: string }>`
@@ -18,4 +19,5 @@ export const Category = styled.div<{ color: string }>`
 
 export const Value = styled.div<{ color: string }>`
     color: ${porps => porps.color};
+    font-weight: 600;
 `;
